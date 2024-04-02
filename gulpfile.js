@@ -78,10 +78,10 @@ function ressources(platform) {
 function worker(platform) {
 	return fixAnonymousName(() => {
 		if (isOnline(platform)) {
-			return src('src/scripts/services/service-worker.js').pipe(dest('release/online'))
+			return src('src/scripts/services/service-worker.js').pipe(dest(`release/${platform}`))
 		} else {
 			const services = ['src/scripts/services/background.js', 'src/scripts/services/webext-storage.js']
-			return src(services).pipe(dest('release/' + platform + '/src/scripts'))
+			return src(services).pipe(dest(`release/${platform}/src/scripts`))
 		}
 	}, `worker:${platform}`)
 }
