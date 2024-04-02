@@ -2,10 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const fs = require('fs/promises')
-const db = require('better-sqlite3')('app.db')
 const argon2 = require('argon2')
 const path = require('path')
 const crypto = require('crypto')
+const betterSqlite = require('better-sqlite3')
+let db
 
 let sessions = []
 
@@ -17,7 +18,7 @@ const ARGON2ID_CONFIG = {
 	secret: ARGON2ID_SECRET,
 }
 
-const CONFIG_PATH = path.resolve(__dirname, './config.json')
+const CONFIG_PATH = path.resolve(__dirname, './data/config.json')
 
 const CURRENT_VERSION = '19.1.1'
 
@@ -157,6 +158,9 @@ function verifyConfig(config) {
 }
 
 async function init() {
+	await fs.mkdir('./data', { recursive: true })
+
+	db = betterSqlite(path.resolve(__dirname, './data/data.db'))
 	db.exec(
 		`CREATE TABLE IF NOT EXISTS users(
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
