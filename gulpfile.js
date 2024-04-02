@@ -14,7 +14,7 @@ function fixAnonymousName(fn, name) {
 }
 
 function isOnline(platform) {
-	return platform === 'online' || platform.startsWith('online-server')
+	return platform === 'online' || platform.startsWith('online-server') || platform === 'online-static'
 }
 
 function html(platform) {
@@ -52,9 +52,10 @@ function scripts(platform, env) {
 			bundle: true,
 			minifySyntax: env === 'PROD',
 			minifyWhitespace: env === 'PROD',
+			define: {
+				['process.env.STATIC_MODE']: JSON.stringify(platform === 'online-static'),
+			},
 		})
-
-		console.log('[13:37:00] Created build for', env, 'environnement')
 
 		return src('release/online/src/scripts/main.js')
 			.pipe(replace('ENVIRONNEMENT = "PROD"', `ENVIRONNEMENT = "${env}"`))
@@ -138,6 +139,8 @@ const taskOnline = (env) => [
 
 const taskOnlineServer = (env) => [...taskExtension('online-server/client', env), buildServer]
 
+const taskOnlineStatic = (env) => taskExtension('online-static', env)
+
 const taskExtension = (from, env) => [
 	html(from),
 	worker(from),
@@ -180,11 +183,16 @@ export const onlineServer = async () => {
 	watch(filesToWatch, parallel(...taskOnlineServer('DEV')))
 }
 
+export const onlineStatic = async () => {
+	watch(filesToWatch, parallel(...taskOnlineStatic('DEV')))
+}
+
 export const buildtest = parallel(...taskOnline('TEST'))
 
 export const build = parallel(
 	...taskOnline('PROD'),
 	...taskOnlineServer('PROD'),
+	...taskOnlineStatic('PROD'),
 	...taskExtension('firefox', 'PROD'),
 	...taskExtension('chrome', 'PROD'),
 	...taskExtension('edge', 'PROD'),

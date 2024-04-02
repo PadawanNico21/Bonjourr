@@ -306,7 +306,7 @@ function remoteConfig(configUrl: string): Storage {
 }
 
 export default PLATFORM === 'online'
-	? document.getElementById('login-to-settings')
-		? remoteConfig('/api/config')
+	? document.getElementById('login-to-settings') || process.env.STATIC_MODE
+		? remoteConfig(process.env.STATIC_MODE ? '/config.json' : '/api/config')
 		: online()
 	: webext()

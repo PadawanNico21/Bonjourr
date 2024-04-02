@@ -729,6 +729,10 @@ function initSettingsEvents() {
 	domUpdateToServer?.addEventListener('click', handleUpdateToServer)
 	domLogout?.addEventListener('click', handleLogout)
 
+	if (process.env.STATIC_MODE && domShowSettings) {
+		domShowSettings.hidden = true
+	}
+
 	if (domShowSettings && onlineRemoteConfigFeatureEnabled) {
 		const handleLocationHash = () => {
 			if (document.location.hash === '#admin') {
