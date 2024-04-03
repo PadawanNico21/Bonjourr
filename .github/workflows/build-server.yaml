@@ -6,7 +6,7 @@ on:
         branches: ['release']
 env:
     REGISTRY: ghcr.io
-    IMAGE_NAME: bonjourr-adminui
+    IMAGE_NAME: PadawanNico21/bonjourr-adminui
 jobs:
     build:
         runs-on: ubuntu-latest
