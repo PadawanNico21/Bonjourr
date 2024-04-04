@@ -1,12 +1,9 @@
 import gulp from 'gulp'
 import rename from 'gulp-rename'
 import replace from 'gulp-replace'
-import gulpsass from 'gulp-sass'
 import esbuild from 'esbuild'
-import * as sasscompiler from 'sass'
 
 const { parallel, src, dest, watch } = gulp
-const sass = gulpsass(sasscompiler)
 
 function fixAnonymousName(fn, name) {
 	Object.defineProperty(fn, 'name', { value: name })
@@ -97,13 +94,7 @@ function manifest(platform) {
 }
 
 function styles(platform) {
-	return fixAnonymousName(
-		() =>
-			src('src/styles/style.scss')
-				.pipe(sass.sync({ outputStyle: 'compressed' }).on('error', sass.logError))
-				.pipe(dest(`release/${platform}/src/styles/`)),
-		`styles:${platform}`
-	)
+	return fixAnonymousName(() => src('src/styles/**/*').pipe(dest(`release/${platform}/src/styles/`)), `styles:${platform}`)
 }
 
 function locales(platform) {
