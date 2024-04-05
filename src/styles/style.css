@@ -12,6 +12,7 @@
 @import 'features/editlink';
 @import 'features/bookmarks';
 @import 'features/csseditor';
+@import 'features/loginsettings';
 
 @import 'components/popup';
 @import 'components/dialog';

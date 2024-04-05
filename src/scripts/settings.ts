@@ -14,6 +14,7 @@ import linksImport, { syncNewBookmarks } from './features/links/bookmarks'
 import customFont, { fontIsAvailableInSubset } from './features/fonts'
 import { backgroundFilter, updateBackgroundOption } from './features/backgrounds'
 import { darkmode, favicon, tabTitle, textShadow, pageControl } from './features/others'
+import { addHandlersToSettings } from './features/online-version'
 
 import langList from './langs'
 import parse from './utils/parse'
@@ -29,6 +30,7 @@ import { SYSTEM_OS, IS_MOBILE, PLATFORM, BROWSER, SYNC_DEFAULT, LOCAL_DEFAULT } 
 // import 'prism-code-editor/prism/languages/json'
 
 import type { Langs } from '../types/langs'
+import errorMessage from './utils/errormessage'
 
 export async function settingsInit() {
 	if (!!document.getElementById('settings')) {
@@ -68,6 +70,8 @@ export async function settingsInit() {
 		chrome.storage.onChanged.addListener(storageUpdate)
 		window.addEventListener('beforeunload', removeListener, { once: true })
 	}
+
+	addHandlersToSettings()
 
 	document.addEventListener('toggle-settings', toggleSettingsMenu)
 }
