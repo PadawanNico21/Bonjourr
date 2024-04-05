@@ -41,22 +41,19 @@ function html(platform) {
 }
 
 function scripts(platform, env) {
-	return fixAnonymousName(() => {
+	return fixAnonymousName(async () => {
 		esbuild.buildSync({
 			entryPoints: ['src/scripts/index.ts'],
-			outfile: 'release/online/src/scripts/main.js',
+			outfile: `release/${platform}/src/scripts/main.js`,
 			format: 'iife',
 			bundle: true,
 			minifySyntax: env === 'PROD',
 			minifyWhitespace: env === 'PROD',
 			define: {
 				['process.env.STATIC_MODE']: JSON.stringify(platform === 'online-static'),
+				ENV: JSON.stringify(env),
 			},
 		})
-
-		return src('release/online/src/scripts/main.js')
-			.pipe(replace('ENVIRONNEMENT = "PROD"', `ENVIRONNEMENT = "${env}"`))
-			.pipe(dest(`release/${platform}/src/scripts`))
 	}, `scripts:${platform}`)
 }
 
@@ -93,8 +90,15 @@ function manifest(platform) {
 	}, `manifest:${platform}`)
 }
 
-function styles(platform) {
-	return fixAnonymousName(() => src('src/styles/**/*').pipe(dest(`release/${platform}/src/styles/`)), `styles:${platform}`)
+function styles(platform, env) {
+	return fixAnonymousName(async () => {
+		esbuild.buildSync({
+			entryPoints: ['src/styles/style.css'],
+			outfile: `release/${platform}/src/styles/style.css`,
+			bundle: true,
+			minify: env === 'PROD',
+		})
+	}, `styles:${platform}`)
 }
 
 function locales(platform) {
@@ -120,7 +124,7 @@ const filesToWatch = ['./_locales/**', './src/*.html', './src/scripts/**', './sr
 // prettier-ignore
 const taskOnline = (env) => [
 	html('online'),
-	styles('online'),
+	styles('online', env),
 	worker('online'),
 	locales('online'),
 	manifest('online'),
@@ -135,7 +139,7 @@ const taskOnlineStatic = (env) => taskExtension('online-static', env)
 const taskExtension = (from, env) => [
 	html(from),
 	worker(from),
-	styles(from),
+	styles(from, env),
 	locales(from),
 	manifest(from),
 	ressources(from),

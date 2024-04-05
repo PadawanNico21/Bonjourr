@@ -21,6 +21,7 @@ import { traduction, setTranslationCache } from './utils/translations'
 import onSettingsLoad from './utils/onsettingsload'
 import errorMessage from './utils/errormessage'
 import suntime from './utils/suntime'
+import { initOnlineVersion, isOnlineServerMode } from './features/online-version'
 
 type FeaturesToWait = 'clock' | 'links' | 'fonts' | 'quotes'
 
@@ -90,6 +91,8 @@ async function startup() {
 		document.body.classList.remove('init')
 
 		userActionsEvents()
+		initOnlineVersion()
+
 		setPotatoComputerMode()
 		interfacePopup({
 			old: OLD_VERSION,
@@ -215,7 +218,11 @@ function userActionsEvents() {
 			console.log(await storage.sync.get())
 		}
 
-		if (event.code === 'Escape') {
+		if (event.code === 'F2' && isOnlineServerMode) {
+			document.location.hash = document.location.hash === '#admin' ? '' : '#admin'
+		}
+
+		if (event.code === 'Escape' && !isOnlineServerMode) {
 			if (domsuggestions?.classList.contains('shown')) {
 				domsuggestions?.classList.remove('shown')
 				return

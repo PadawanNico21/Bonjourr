@@ -20,7 +20,7 @@ const ARGON2ID_CONFIG = {
 
 const CONFIG_PATH = path.resolve(__dirname, './data/config.json')
 
-const CURRENT_VERSION = '19.1.1'
+const CURRENT_VERSION = '19.2.1'
 
 const DEFAULT_CONFIG = {
 	about: {
@@ -46,7 +46,6 @@ const DEFAULT_CONFIG = {
 	textShadow: 0.2,
 	announcements: 'major',
 	review: 0,
-	cssHeight: 80,
 	css: '',
 	hide: {},
 	linkstyle: 'large',
@@ -110,7 +109,7 @@ const DEFAULT_CONFIG = {
 		size: '14',
 		system: true,
 		weightlist: [],
-		weight: '300',
+		weight: '400',
 	},
 	move: {
 		selection: 'single',
