@@ -1,3 +1,6 @@
+# Sonarqube
+.scannerwork
+
 # Logs
 logs
 *.log

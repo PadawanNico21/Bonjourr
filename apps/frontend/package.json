@@ -1,0 +1,23 @@
+{
+    "name": "@bonsoirr/frontend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "Bonsoirr is a full rewrite of Bonjourr. Bonjourr is a customizable homepage for your browser",
+    "scripts": {
+        "test": "echo No tests specified && exit 1",
+        "build": "rspack"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "GPL-3.0-only",
+    "devDependencies": {
+        "@rspack/cli": "^0.5.9",
+        "@rspack/core": "^0.5.9",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.4"
+    },
+    "dependencies": {
+        "@bonsoirr/storage-driver-auto": "workspace:^1.0.0",
+        "@bonsoirr/storage-driver-localpage": "workspace:^1.0.0"
+    }
+}
