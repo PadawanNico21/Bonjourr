@@ -20,7 +20,7 @@ const ARGON2ID_CONFIG = {
 
 const CONFIG_PATH = path.resolve(__dirname, './data/config.json')
 
-const CURRENT_VERSION = '19.2.1'
+const CURRENT_VERSION = '19.2.4'
 
 const DEFAULT_CONFIG = {
 	about: {
