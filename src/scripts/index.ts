@@ -223,7 +223,7 @@ function userActionsEvents() {
 			document.location.hash = document.location.hash === '#admin' ? '' : '#admin'
 		}
 
-		if (event.code === 'Escape' && !isOnlineServerMode) {
+		if (event.code === 'Escape' && !isOnlineServerMode && !process.env.STATIC_MODE) {
 			if (domsuggestions?.classList.contains('shown')) {
 				domsuggestions?.classList.remove('shown')
 				return
@@ -340,7 +340,7 @@ function userActionsEvents() {
 			settingsInit()
 		}
 
-		if (dispatchEvents) {
+		if (dispatchEvents && !isOnlineServerMode && !process.env.STATIC_MODE) {
 			domshowsettings?.removeEventListener('pointerup', settingsFirstLoad)
 			document.body?.removeEventListener('keyup', settingsFirstLoad)
 			document.dispatchEvent(new Event('toggle-settings'))

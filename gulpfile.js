@@ -16,8 +16,10 @@ function isOnline(platform) {
 
 function html(platform) {
 	return fixAnonymousName(() => {
-		const assets = ['src/*.html']
+		const assets = ['src/index.html']
 		const stream = src(assets)
+
+		if (platform !== 'online-static') assets.push('src/settings.html')
 
 		if (platform === 'edge') {
 			stream.pipe(replace(`favicon.ico`, `monochrome.png`))
