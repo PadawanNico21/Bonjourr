@@ -131,4 +131,4 @@ export function addHandlersToSettings() {
 	domLogout?.addEventListener('click', handleLogout)
 }
 
-export const isOnlineServerMode = !!document.getElementById('login-to-settings')
+export const isReadonlyModeOrInServer = !!document.getElementById('login-to-settings') || process.env.STATIC_MODE

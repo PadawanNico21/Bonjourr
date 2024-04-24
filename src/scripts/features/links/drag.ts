@@ -1,5 +1,6 @@
 import { getLiFromEvent } from './helpers'
 import { linksUpdate } from '.'
+import { isReadonlyModeOrInServer } from '../online-version'
 
 type Coords = {
 	x: number
@@ -26,6 +27,8 @@ const domlinklist = document.getElementById('link-list') as HTMLUListElement
 const domlinkblocks = document.getElementById('linkblocks') as HTMLDivElement
 
 export default function startDrag(event: PointerEvent) {
+	if (isReadonlyModeOrInServer) return
+
 	if (event.button > 0) {
 		return
 	}

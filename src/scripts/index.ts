@@ -21,7 +21,7 @@ import onSettingsLoad from './utils/onsettingsload'
 import errorMessage from './utils/errormessage'
 import suntime from './utils/suntime'
 import storage from './storage'
-import { initOnlineVersion, isOnlineServerMode } from './features/online-version'
+import { initOnlineVersion, isReadonlyModeOrInServer } from './features/online-version'
 
 type FeaturesToWait = 'clock' | 'links' | 'fonts' | 'quotes'
 
@@ -219,11 +219,11 @@ function userActionsEvents() {
 			console.log(await storage.sync.get())
 		}
 
-		if (event.code === 'F2' && isOnlineServerMode) {
+		if (event.code === 'F2' && isReadonlyModeOrInServer) {
 			document.location.hash = document.location.hash === '#admin' ? '' : '#admin'
 		}
 
-		if (event.code === 'Escape' && !isOnlineServerMode && !process.env.STATIC_MODE) {
+		if (event.code === 'Escape' && !isReadonlyModeOrInServer && !process.env.STATIC_MODE) {
 			if (domsuggestions?.classList.contains('shown')) {
 				domsuggestions?.classList.remove('shown')
 				return
@@ -340,7 +340,7 @@ function userActionsEvents() {
 			settingsInit()
 		}
 
-		if (dispatchEvents && !isOnlineServerMode && !process.env.STATIC_MODE) {
+		if (dispatchEvents && !isReadonlyModeOrInServer && !process.env.STATIC_MODE) {
 			domshowsettings?.removeEventListener('pointerup', settingsFirstLoad)
 			document.body?.removeEventListener('keyup', settingsFirstLoad)
 			document.dispatchEvent(new Event('toggle-settings'))

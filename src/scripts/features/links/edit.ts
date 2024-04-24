@@ -5,6 +5,7 @@ import { linksUpdate } from '.'
 import { tradThis } from '../../utils/translations'
 import transitioner from '../../utils/transitioner'
 import storage from '../../storage'
+import { isReadonlyModeOrInServer } from '../online-version'
 
 const domlinkblocks = document.getElementById('linkblocks') as HTMLDivElement
 const domeditlink = document.getElementById('editlink') as HTMLDialogElement
@@ -17,6 +18,8 @@ const domicon = document.getElementById('e_iconurl') as HTMLInputElement
 //
 
 export default async function openEditDialog(event: Event) {
+	if (isReadonlyModeOrInServer) return
+
 	if (event.type === 'keyup' && (event as KeyboardEvent).code !== 'KeyE') {
 		return
 	}
@@ -149,6 +152,8 @@ function newEditDialogPosition(event: Event): { x: number; y: number } {
 //
 
 queueMicrotask(() => {
+	if (isReadonlyModeOrInServer) return
+
 	document.addEventListener('close-edit', closeEditDialog)
 	document.getElementById('editlink-form')?.addEventListener('submit', submitChanges)
 	domlinkblocks?.addEventListener('contextmenu', openEditDialog)

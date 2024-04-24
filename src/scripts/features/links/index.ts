@@ -10,6 +10,7 @@ import { BROWSER } from '../../defaults'
 import startDrag from './drag'
 import initTabs from './tabs'
 import storage from '../../storage'
+import { isReadonlyModeOrInServer } from '../online-version'
 
 type Link = Links.Link
 type Elem = Links.Elem
@@ -135,10 +136,12 @@ export async function initblocks(data: Sync.Storage): Promise<true> {
 				? createElem(link, data.linknewtab, data.linkstyle)
 				: createFolder(link, linksInFolders, data.linkstyle)
 
-			li.addEventListener('keyup', displayEditDialog)
-			li.addEventListener('click', selectAll)
-			li.addEventListener('pointerdown', selectAll)
-			li.addEventListener('pointerdown', startDrag)
+			if (!isReadonlyModeOrInServer) {
+				li.addEventListener('keyup', displayEditDialog)
+				li.addEventListener('click', selectAll)
+				li.addEventListener('pointerdown', selectAll)
+				li.addEventListener('pointerdown', startDrag)
+			}
 		}
 
 		fragment.appendChild(li)
