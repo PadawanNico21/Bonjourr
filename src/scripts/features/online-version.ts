@@ -30,7 +30,7 @@ async function handleUpdateToServer() {
 	domUpdateMessage.style.color = 'var(--color-light-text)'
 	domUpdateMessage.innerText = 'Loading...'
 
-	const res = await fetch('/api/config', {
+	const res = await fetch('./api/config', {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export function initOnlineVersion() {
 			const password = domLoginPassword.value
 			domLoginPassword.value = ''
 			try {
-				const res = await fetch('/api/login', {
+				const res = await fetch('./api/login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
