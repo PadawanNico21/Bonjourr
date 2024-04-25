@@ -269,7 +269,7 @@ async function applyLinkChanges(origin: 'inputs' | 'button') {
 
 			link.icon = url ? url : undefined
 
-			icon.dom.src = 'src/assets/interface/loading.svg'
+			icon.dom.src = './src/assets/interface/loading.svg'
 			img.onload = () => (icon.dom!.src = url)
 			img.src = url
 		}

@@ -315,7 +315,7 @@ async function suggestions(results: Suggestions) {
 		const result = results[i]
 		if (!result) return
 
-		const searchIcon = 'src/assets/interface/magnifying-glass.svg'
+		const searchIcon = './src/assets/interface/magnifying-glass.svg'
 		const image = result.image ?? searchIcon
 		const desc = result.desc ?? ''
 
