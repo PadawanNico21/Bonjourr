@@ -17,9 +17,10 @@ function isOnline(platform) {
 function html(platform) {
 	return fixAnonymousName(() => {
 		const assets = ['src/index.html']
-		const stream = src(assets)
 
 		if (platform !== 'online-static') assets.push('src/settings.html')
+
+		const stream = src(assets)
 
 		if (platform === 'edge') {
 			stream.pipe(replace(`favicon.ico`, `monochrome.png`))
@@ -37,6 +38,9 @@ function html(platform) {
 		} else {
 			stream.pipe(replace(`<!-- webext-storage -->`, `<script src="src/scripts/webext-storage.js"></script>`))
 		}
+
+		if (platform.startsWith('online-server') || platform === 'online-static')
+			stream.pipe(replace(/<!--\s*#region SettingsButton\s*-->[^]*<!--\s*#endregion SettingsButton\s*-->/g, ''))
 
 		return stream.pipe(dest(`release/${platform}`))
 	}, `html:${platform}`)
