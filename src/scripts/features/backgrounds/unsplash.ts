@@ -323,11 +323,10 @@ function imgCredits(image: Unsplash.Image) {
 		domcredit.textContent = ''
 	}
 
-	domcredit?.appendChild(domexif)
-	domcredit?.appendChild(domlocation)
-	domcredit?.appendChild(domspacer)
-	domcredit?.appendChild(domartist)
-	domcredit?.appendChild(domrest)
+	const editedBy = document.createElement('p')
+	editedBy.innerText = 'Adapté par N. Boucher - Terminale Spécialité NSI 2024'
+
+	domcredit?.append(domexif, domlocation, domspacer, domartist, domrest, editedBy)
 	domcontainer?.classList.toggle('shown', true)
 }
 

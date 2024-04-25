@@ -56,15 +56,9 @@ export function initOnlineVersion() {
 	const domLoginPassword = document.getElementById('login-password') as HTMLInputElement
 	const domLoginMessage = document.getElementById('login-form-message')!
 
-	const domShowSettings = document.getElementById('showSettings')
-
 	const onlineRemoteConfigFeatureEnabled = !!domLoginToSettings
 
-	if (process.env.STATIC_MODE && domShowSettings) {
-		domShowSettings.hidden = true
-	}
-
-	if (domShowSettings && onlineRemoteConfigFeatureEnabled) {
+	if (onlineRemoteConfigFeatureEnabled) {
 		const handleLocationHash = () => {
 			if (document.location.hash === '#admin') {
 				const session = localStorage.getItem('session')
@@ -85,8 +79,6 @@ export function initOnlineVersion() {
 				domLoginToSettings.close()
 			}
 		}
-
-		domShowSettings.hidden = true
 
 		handleLocationHash()
 
