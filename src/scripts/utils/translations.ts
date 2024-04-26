@@ -16,7 +16,7 @@ export async function setTranslationCache(lang: string, local?: Local.Storage) {
 	if (useCache) {
 		trns = local.translations
 	} else {
-		trns = await (await fetch(`../../_locales/${lang}/translations.json`)).json()
+		trns = await (await fetch(`./_locales/${lang}/translations.json`)).json()
 		storage.local.set({ translations: trns })
 	}
 
