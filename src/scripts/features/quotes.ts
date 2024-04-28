@@ -32,14 +32,16 @@ export default async function quotes(init?: QuotesInit, update?: QuotesUpdate) {
 		return
 	}
 
+	const latestQuoteUpdate = parseInt((await storage.local.get('lastQuoteUpdate')).lastQuoteUpdate ?? '0')
+
 	const { lang, quotes } = init.sync
-	const needsNewQuote = freqControl.get(quotes.frequency, quotes.last)
+	const needsNewQuote = freqControl.get(quotes.frequency, latestQuoteUpdate)
 
 	let list = init.local?.quotesCache ?? []
 	let selection = init.local?.userQuoteSelection ?? 0
 	let quote: Quote = list[0]
 
-	const noCache = !list || list?.length === 0
+	const noCache = !list || list.length === 0
 	const isUser = quotes.type === 'user'
 
 	if (noCache) {
@@ -54,7 +56,7 @@ export default async function quotes(init?: QuotesInit, update?: QuotesUpdate) {
 	}
 
 	if (needsNewQuote) {
-		quotes.last = freqControl.set()
+		storage.local.set({ lastQuoteUpdate: freqControl.set() })
 		quote = controlCacheList(list, lang, quotes.type)
 		storage.sync.set({ quotes })
 	}
@@ -85,7 +87,7 @@ async function updateQuotes({ author, frequency, type, userlist, refresh }: Quot
 	}
 
 	if (refresh) {
-		data.quotes.last = freqControl.set()
+		storage.local.set({ lastQuoteUpdate: freqControl.set() })
 		refreshQuotes(data, local?.quotesCache)
 	}
 

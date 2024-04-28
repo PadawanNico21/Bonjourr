@@ -10,6 +10,7 @@ declare namespace Local {
 		translations?: Translations
 		lastWeather?: Weather.Local
 		operaExplained?: true
+		lastQuoteUpdate?: string
 	}
 
 	type Translations = {
