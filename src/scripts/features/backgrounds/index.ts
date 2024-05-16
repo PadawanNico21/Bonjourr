@@ -18,6 +18,7 @@ export default function initBackground(data: Sync.Storage, local: Local.Storage)
 	const type = data.background_type || 'unsplash'
 	const blur = data.background_blur
 	const brightness = data.background_bright
+	data.unsplash.time = 0
 
 	backgroundFilter({ blur, brightness })
 

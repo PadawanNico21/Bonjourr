@@ -97,9 +97,10 @@ function online(): Storage {
 	}
 
 	const local = {
-		set: (value: Keyval) => {
-			const [key, val] = Object.entries(value)[0]
-			return localStorage.setItem(key, JSON.stringify(val))
+		set: (keyval: Keyval) => {
+			for (const [key, value] of Object.entries(keyval)) {
+				localStorage.setItem(key, JSON.stringify(value))
+			}
 		},
 
 		get: async (keys?: string | string[]) => {
@@ -266,10 +267,10 @@ function remoteConfig(configUrl: string): Storage {
 	}
 
 	const local = {
-		set: (value: Keyval) => {
-			const [key, val] = Object.entries(value)[0]
-
-			return localStorage.setItem(key, JSON.stringify(val))
+		set: (keyval: Keyval) => {
+			for (const [key, value] of Object.entries(keyval)) {
+				localStorage.setItem(key, JSON.stringify(value))
+			}
 		},
 
 		get: async (keys?: string | string[]) => {

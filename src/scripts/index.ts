@@ -396,13 +396,13 @@ function onlineAndMobile() {
 		visibilityHasChanged = false
 
 		const data = await storage.sync.get()
-		const local = await storage.local.get(['unsplashCache', 'lastWeather'])
+		const local = await storage.local.get(['unsplashCache', 'lastWeather', 'lastBGUpdate'])
 
 		if (!data?.clock || !data?.weather) {
 			return
 		}
 
-		const frequency = freqControl.get(data.unsplash.every, data.unsplash.time ?? Date.now())
+		const frequency = freqControl.get(data.unsplash.every, parseInt(local.lastBGUpdate ?? Date.now().toString()))
 		const needNewImage = data.background_type === 'unsplash' && frequency
 
 		if (needNewImage && data.unsplash) {
@@ -440,7 +440,7 @@ function onlineAndMobile() {
 }
 
 function serviceWorker() {
-	if (ENVIRONNEMENT !== 'PROD' || PLATFORM !== 'online' || !('serviceWorker' in navigator)) {
+	if (ENVIRONNEMENT !== 'PROD' || PLATFORM !== 'online' || !('serviceWorker' in navigator) || true) {
 		return
 	}
 

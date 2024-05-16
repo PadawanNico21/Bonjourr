@@ -48,6 +48,7 @@ export default function unsplashBackgrounds(init?: UnsplashInit, event?: Unsplas
 async function updateUnsplash({ refresh, every, collection }: UnsplashUpdate) {
 	const { unsplash } = await storage.sync.get('unsplash')
 	const unsplashCache = await getCache()
+	let lastBGUpdate = parseInt((await storage.local.get('lastBGUpdate')).lastBGUpdate ?? '0')
 
 	if (!unsplash) {
 		return
@@ -59,7 +60,7 @@ async function updateUnsplash({ refresh, every, collection }: UnsplashUpdate) {
 			return
 		}
 
-		unsplash.time = 0
+		lastBGUpdate = 0
 		storage.sync.set({ unsplash })
 		turnRefreshButton(refresh, true)
 
@@ -70,7 +71,7 @@ async function updateUnsplash({ refresh, every, collection }: UnsplashUpdate) {
 		const currentImage = unsplashCache[unsplash.lastCollec][0]
 		unsplash.pausedImage = every === 'pause' ? currentImage : undefined
 		unsplash.every = every
-		unsplash.time = freqControl.set()
+		lastBGUpdate = freqControl.set()
 		storage.sync.set({ unsplash })
 	}
 
@@ -99,7 +100,7 @@ async function updateUnsplash({ refresh, every, collection }: UnsplashUpdate) {
 		// add new collec
 		unsplash.collection = collection.replaceAll(` `, '')
 		unsplash.lastCollec = 'user'
-		unsplash.time = freqControl.set()
+		lastBGUpdate = freqControl.set()
 
 		collectionForm.load()
 
@@ -120,17 +121,18 @@ async function updateUnsplash({ refresh, every, collection }: UnsplashUpdate) {
 	}
 
 	storage.sync.set({ unsplash })
-	storage.local.set({ unsplashCache })
+	storage.local.set({ unsplashCache, lastBGUpdate })
 }
 
 async function cacheControl(unsplash: Unsplash.Sync, cache?: Unsplash.Local) {
 	unsplash = { ...SYNC_DEFAULT.unsplash, ...unsplash }
 	cache = cache ?? (await getCache())
+	let lastBGUpdate = parseInt((await storage.local.get('lastBGUpdate')).lastBGUpdate ?? '0')
 
 	let { lastCollec } = unsplash
-	const { every, time, collection, pausedImage } = unsplash
+	const { every, collection, pausedImage } = unsplash
 
-	const needNewImage = freqControl.get(every, time ?? Date.now())
+	const needNewImage = freqControl.get(every, lastBGUpdate)
 	const needNewCollec = !every.match(/day|pause/) && periodOfDay() !== lastCollec
 
 	if (needNewCollec && lastCollec !== 'user') {
@@ -169,7 +171,7 @@ async function cacheControl(unsplash: Unsplash.Sync, cache?: Unsplash.Local) {
 
 	// Needs new image, Update time
 	unsplash.lastCollec = lastCollec
-	unsplash.time = freqControl.set()
+	lastBGUpdate = freqControl.set()
 
 	if (list.length > 1) {
 		list.shift()
@@ -197,7 +199,7 @@ async function cacheControl(unsplash: Unsplash.Sync, cache?: Unsplash.Local) {
 	}
 
 	storage.sync.set({ unsplash })
-	storage.local.set({ unsplashCache: cache })
+	storage.local.set({ unsplashCache: cache, lastBGUpdate })
 }
 
 async function initUnsplashBackgrounds(unsplash: Unsplash.Sync, cache: Unsplash.Local) {
@@ -210,7 +212,7 @@ async function initUnsplashBackgrounds(unsplash: Unsplash.Sync, cache: Unsplash.
 
 	cache[lastCollec] = list
 	unsplash.lastCollec = lastCollec
-	unsplash.time = new Date().getTime()
+	const lastBGUpdate = new Date().getTime()
 	preloadImage(list[0].url)
 
 	// With weather loaded and different suntime
@@ -227,7 +229,7 @@ async function initUnsplashBackgrounds(unsplash: Unsplash.Sync, cache: Unsplash.
 	}
 
 	storage.sync.set({ unsplash })
-	storage.local.set({ unsplashCache: cache })
+	storage.local.set({ unsplashCache: cache, lastBGUpdate })
 	sessionStorage.setItem('waitingForPreload', 'true')
 
 	loadBackground(list[0])

@@ -11,6 +11,7 @@ declare namespace Local {
 		lastWeather?: Weather.Local
 		operaExplained?: true
 		lastQuoteUpdate?: string
+		lastBGUpdate?: string
 	}
 
 	type Translations = {
