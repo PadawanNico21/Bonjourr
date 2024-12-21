@@ -1,0 +1,228 @@
+---
+metadata:
+    contributors:
+        - <Your name here>
+---
+Cancel: Cancel
+Select bookmarks: Select bookmarks
+Title: Title
+Link: Link
+Icon: Icon
+Submit from inputs: Submit from inputs
+Add new page: Add new page
+Add new link: Add new link
+Create new folder: Create new folder
+Delete page: Delete page
+Delete selection: Delete selection
+Delete folder: Delete folder
+Delete link: Delete link
+Remove from folder: Remove from folder
+Apply changes: Apply changes
+Editing: Editing
+No selection: No selection
+Grid position: Grid position
+Fill row: Fill row
+Fill column: Fill column
+Box alignment: Box alignment
+Text alignment: Text alignment
+Reset layout: Reset layout
+Done: Done
+Folder: Folder
+Default page: Default page
+Example: Example
+General: General
+Show all settings: Show all settings
+Language: Language
+Dark mode: Dark mode
+System: System
+At night: At night
+Enabled: Enabled
+Disabled: Disabled
+Tab appearance: Tab appearance
+The icon and title that appear on your tab. You can put any emoji.: The icon and title that appear on your tab. You can put any emoji.
+Hide settings icon: Hide settings icon
+Background: Background
+Background type: Background type
+Unsplash: Unsplash
+Local file: Local file
+Frequency: Frequency
+Every tab: Every tab
+Every hour: Every hour
+Daylight: Daylight
+Every day: Every day
+Pause: Pause
+Unsplash collection: Unsplash collection
+Type the collection ID from its URL, add more by separating them with a comma.:
+    Type the collection ID from its URL, add more by separating them with a
+    comma.
+Learn more: Learn more
+Upload background here: Upload background here
+Blur intensity: Blur intensity
+Brightness: Brightness
+Quick Links: Quick Links
+"These are Bonjourr's bookmarks. ": "These are Bonjourr's bookmarks. "
+" Edit your Quick Links by right clicking the icon. ": " Edit your Quick Links by right clicking the icon. "
+Enable: Enable
+Add link: Add link
+Import bookmarks: Import bookmarks
+Import: Import
+Sync new bookmarks: Sync new bookmarks
+Link pages: Link pages
+Organize your links even more with pages. Right click next to a page to add another.:
+    Organize your links even more with pages. Right click next to a page to add
+    another.
+Open in new tab: Open in new tab
+Links per row: Links per row
+Style: Style
+Large: Large
+Medium: Medium
+Small: Small
+Inline: Inline
+Text: Text
+Time & Date: Time & Date
+Analog clock: Analog clock
+Clock face: Clock face
+None: None
+Numbers: Numbers
+Romans: Romans
+Marks: Marks
+Clock style: Clock style
+Round: Round
+Square: Square
+Transparent: Transparent
+12-Hour Time: 12-Hour Time
+Show seconds: Show seconds
+Date format: Date format
+Day date month: Day date month
+Day, month date: Day, month date
+Month date day: Month date day
+Clock size: Clock size
+Time zone: Time zone
+Automatic: Automatic
+Show: Show
+Clock and date: Clock and date
+Clock only: Clock only
+Date only: Date only
+Weather & Greetings: Weather & Greetings
+Geolocation: Geolocation
+Manual: Manual
+Approximate: Approximate
+Precise: Precise
+Location: Location
+Unit: Unit
+Celsius: Celsius
+Fahrenheit: Fahrenheit
+Forecast: Forecast
+Always show: Always show
+Never show: Never show
+Temperature: Temperature
+Actual: Actual
+Feels like: Feels like
+Both: Both
+Detailed weather: Detailed weather
+Custom provider: Custom provider
+Click on the weather widget to get detailed weather reports.: Click on the weather widget to get detailed weather reports.
+Provider URL: Provider URL
+Description and icon: Description and icon
+Description only: Description only
+Icon only: Icon only
+Greetings: Greetings
+Greeting name: Greeting name
+Notes: Notes
+Left: Left
+Center: Center
+Right: Right
+Width: Width
+Opacity: Opacity
+Search bar: Search bar
+Suggestions: Suggestions
+Search engine: Search engine
+Custom: Custom
+URL request: URL request
+Placeholder text: Placeholder text
+Quotes: Quotes
+Always show author: Always show author
+Quote type: Quote type
+Classic: Classic
+Custom quotes: Custom quotes
+Fonts: Fonts
+Font family: Font family
+Weight: Weight
+Size: Size
+Shadow: Shadow
+Page layout: Page layout
+Customise how and where widgets appear.: Customise how and where widgets appear.
+Open the toolbox and select a widget to modify on the page.: Open the toolbox and select a widget to modify on the page.
+Open layout toolbox: Open layout toolbox
+Open: Open
+Layout columns: Layout columns
+Page width: Page width
+Page gap: Page gap
+Custom Style: Custom Style
+"Make cool things happen with CSS. ": "Make cool things happen with CSS. "
+"Check out our ": "Check out our "
+CSS snippets.: CSS snippets.
+Updates: Updates
+Announcements: Announcements
+All: All
+Major changes: Major changes
+Settings management: Settings management
+Transfer your settings between multiple instances of Bonjourr.: Transfer your settings between multiple instances of Bonjourr.
+Export: Export
+Copy text: Copy text
+Export as file: Export as file
+Drop file to import settings: Drop file to import settings
+Reset settings: Reset settings
+Are you sure ?: Are you sure ?
+I am sure: I am sure
+No, go back: No, go back
+Made in France with ❤️: Made in France with ❤️
+by: by
+Consider: Consider
+donating: donating
+if you love Bonjourr: if you love Bonjourr
+New tab: New tab
+example.com: example.com
+City: City
+Name: Name
+"Search query: {{address}}": "Search query: {{address}}"
+Search: Search
+"Author, Your quote.\nAuthor, Your second quote.": |-
+    Author, Your quote.
+    Author, Your second quote.
+or paste as text: or paste as text
+Ok so... this is embarassing 😅: Ok so... this is embarassing 😅
+Opera does not allow extensions to modify its new tab. While there is no official statement, we believe this is because ads on their speed dial is a good revenue source for them.:
+    Opera does not allow extensions to modify its new tab. While there is no
+    official statement, we believe this is because ads on their speed dial is a
+    good revenue source for them.
+What to do from here ?: What to do from here ?
+Remove Bonjourr and use Opera speed dial: Remove Bonjourr and use Opera speed dial
+Use a similar browser like Brave or Vivaldi: Use a similar browser like Brave or Vivaldi
+"Follow ": "Follow "
+this tutorial on our documentation: this tutorial on our documentation
+. Bonjourr, or any homepage, should somewhat work!: . Bonjourr, or any homepage, should somewhat work!
+Close and access Bonjourr: Close and access Bonjourr
+Type in your custom CSS: Type in your custom CSS
+folder: folder
+Review: Review
+Donate: Donate
+Photo by {{name}}: Photo by {{name}}
+Page: Page
+Edit your Quick Links by long-pressing the icon.: Edit your Quick Links by long-pressing the icon.
+Copied: Copied
+It is currently {{temperature}}°: It is currently {{temperature}}°
+It currently feels like {{feel_temperature}}°: It currently feels like {{feel_temperature}}°
+It is currently {{temperature}}° and feels like {{feel_temperature}}°: It is currently {{temperature}}° and feels like {{feel_temperature}}°
+with a high of {{temperature}}° today: with a high of {{temperature}}° today
+with a high of {{temperature}}° tomorrow: with a high of {{temperature}}° tomorrow
+Weather: Weather
+Close: Close
+Import this bookmark: Import this bookmark
+Import these bookmarks: Import these bookmarks
+Edit this note: Edit this note
+With markdown titles, lists, and checkboxes: With markdown titles, lists, and checkboxes
+Learn more on {{address}}: Learn more on {{address}}
+Love using Bonjourr? Consider giving us a review or donating, that would help a lot! 😇:
+    Love using Bonjourr? Consider giving us a review or donating, that would
+    help a lot! 😇

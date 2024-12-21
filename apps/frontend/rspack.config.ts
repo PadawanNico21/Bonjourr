@@ -1,5 +1,9 @@
 import { Configuration } from '@rspack/cli'
-import { HtmlRspackPlugin, DefinePlugin } from '@rspack/core'
+import { DefinePlugin, CopyRspackPlugin } from '@rspack/core'
+import HtmlRspackPlugin from 'html-rspack-plugin'
+import { TranslationRspackPlugin } from '@bonsoirr/translation-tool'
+import WorkboxPlugin from 'workbox-webpack-plugin'
+
 import { resolve } from 'path'
 
 const isDev = !!(
@@ -23,14 +27,39 @@ const commonConfig: Configuration = {
     stats: 'normal',
     plugins: [
         new HtmlRspackPlugin({
-            minify: !isDev,
+            minify: false,
             template: './assets/pages/index.html',
+        }),
+        new CopyRspackPlugin({
+            patterns: [
+                {
+                    from: 'assets/svgs',
+                    to: 'assets/svgs',
+                },
+            ],
         }),
         new DefinePlugin({
             ['process.env.MODE']: isDev ? '"development"' : '"production"',
             ['process.env.IS_PRODUCTION']: !isDev,
             ['process.env.IS_DEVELOPMENT']: isDev,
         }),
+        new TranslationRspackPlugin({
+            collapseWhitespace: true,
+            keepClosingSlash: false,
+            removeComments: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            html5: true,
+        }),
+        ...(!isDev
+            ? [
+                  new WorkboxPlugin.GenerateSW({
+                      exclude: ['index.html', /\.json$/],
+                      clientsClaim: true,
+                  }) as any,
+              ]
+            : []),
     ],
     module: {
         rules: [
@@ -49,6 +78,9 @@ const commonConfig: Configuration = {
                 type: 'javascript/auto',
             },
         ],
+    },
+    resolve: {
+        extensions: ['.js', '.ts'],
     },
 }
 

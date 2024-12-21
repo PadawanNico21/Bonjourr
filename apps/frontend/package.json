@@ -5,16 +5,22 @@
     "main": "Bonsoirr is a full rewrite of Bonjourr. Bonjourr is a customizable homepage for your browser",
     "scripts": {
         "test": "echo No tests specified && exit 1",
-        "build": "rspack"
+        "build": "rspack",
+        "dev": "rspack serve --node-env development"
     },
     "keywords": [],
     "author": "",
     "license": "GPL-3.0-only",
     "devDependencies": {
+        "@bonsoirr/translation-tool": "workspace:^1.0.0",
         "@rspack/cli": "^0.5.9",
         "@rspack/core": "^0.5.9",
+        "@swc/core": "^1.6.13",
+        "@swc/register": "^0.1.10",
+        "html-rspack-plugin": "^5.6.2",
         "ts-node": "^10.9.2",
-        "typescript": "^5.4.4"
+        "typescript": "^5.4.4",
+        "workbox-webpack-plugin": "^7.0.0"
     },
     "dependencies": {
         "@bonsoirr/storage-driver-auto": "workspace:^1.0.0",

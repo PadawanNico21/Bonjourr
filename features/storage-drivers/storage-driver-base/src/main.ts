@@ -6,7 +6,7 @@ import {
     Size,
     Theme,
     Unit,
-} from './enums.ts'
+} from './enums'
 
 export const storageSchema = z.object({
     version: z
@@ -48,13 +48,13 @@ export const storageSchema = z.object({
 
     style: z
         .object({
-            fontFamily: z.string().default('$default'),
+            fontFamily: z.string().default('var(--default-font-family)'),
             fontSize: z.number().default(14),
             fontWeight: z.number().default(400),
 
             backgroundBlur: z.number().default(12),
             backgroundBrightness: z.number().min(0).max(1).default(0.8),
-            backgroundImage: z.string().default('$unsplash'),
+            backgroundImage: z.string().default('var(--unsplash-bg-image)'),
             backgroundUpdateFrequency: z.number().default(3600),
 
             theme: z.nativeEnum(Theme).default(Theme.System),
@@ -74,7 +74,7 @@ export const storageSchema = z.object({
     server: z
         .object({
             type: z.nativeEnum(ServerType).default(ServerType.LocalPage),
-            url: z.string().default('_'),
+            url: z.string().default('local://'),
         })
         .default({}),
 })

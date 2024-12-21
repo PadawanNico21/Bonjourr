@@ -1,0 +1,28 @@
+{
+    "name": "@bonsoirr/translation-tool",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/main.js",
+    "bin": "./src/translation-tool.js",
+    "private": true,
+    "scripts": {
+        "test": "echo No tests specified && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "GPL-3.0-only",
+    "devDependencies": {
+        "@rspack/core": "^0.5.9",
+        "@types/jsdom": "^21.1.6",
+        "@types/node": "^20.12.7",
+        "@types/prompts": "^2.4.9",
+        "@types/yargs": "^17.0.32",
+        "html-minifier": "^4.0.0"
+    },
+    "dependencies": {
+        "jsdom": "^24.0.0",
+        "prompts": "^2.4.2",
+        "yaml": "^2.4.1",
+        "yargs": "^17.7.2"
+    }
+}
